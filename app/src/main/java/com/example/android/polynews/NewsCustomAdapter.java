@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -42,6 +44,10 @@ public class NewsCustomAdapter extends ArrayAdapter<ArticleModel> {
                     + ":"+ articleModel.getDate().getMinutes());
             TextView content = (TextView) convertView.findViewById(R.id.content);
             content.setText(articleModel.getContent());
+
+            ImageView imageView = (ImageView) convertView.findViewById(R.id.thumbnail);
+            ProgressBar progressBar = (ProgressBar) convertView.findViewById(R.id.pb_loading_indicator);
+            new AsyncTaskLoadImage(imageView, progressBar).execute(articleModel.getUrlMedia());
         }
 
         return convertView;

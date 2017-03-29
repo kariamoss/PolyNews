@@ -11,7 +11,7 @@
     <GridView
         android:id="@+id/section_grid_label"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:numColumns="2"
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
