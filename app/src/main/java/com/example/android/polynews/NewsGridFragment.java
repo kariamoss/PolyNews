@@ -1,14 +1,11 @@
 package com.example.android.polynews;
 
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,19 +27,19 @@ public class NewsGridFragment extends Fragment {
         articleModels = new ArrayList<>();
         articleModels.add(new ArticleModel(0, "Cours d'info", "Ceci est un contenu\n" +
                 "La longueur devrait être assez grande pour tester maintenant :)", "Jehan",
-                new Date(1995,11,12), "Informatique", "image",
+                new Date(1995,11,12), "Informatique", TypeMedia.IMAGE,
                 "http://static.eyrolles.com/img/2/7/5/4/0/3/1/7/9782754031790_h430.jpg"));
         articleModels.add(new ArticleModel(0, "Tout là haut", "Pas beaucoup de contenu ici :x", "Jehan",
-                new Date(1995,11,12,15,10), "Film", "image",
+                new Date(1995,11,12,15,10), "Film", TypeMedia.IMAGE,
                 "http://www.menucool.com/slider/jsImgSlider/images/image-slider-2.jpg"));
         articleModels.add(new ArticleModel(0, "Ｏ(≧▽≦)Ｏ", "Ces chats sont trop mignons. Le 5ème est tout fou !", "Jehan",
-                new Date(1995,11,12), "Chat", "image",
+                new Date(1995,11,12), "Chat", TypeMedia.IMAGE,
                 "https://beebom.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg"));
         articleModels.add(new ArticleModel(1, "Troll", "Mon dieu mais c'est une vidéo ! Que faire ?", "Jehan",
-                new Date(1995,11,12), "Distraction", "video",
+                new Date(1995,11,12), "Distraction", TypeMedia.VIDEO,
                 "https://www.youtube.com/watch?v=dQw4w9WgXcQ"));
-        articleModels.add(new ArticleModel(0, "Space", "Vers l'infini et au delà", "Jehan",
-                new Date(1995,11,12), "Science", "image",
+        articleModels.add(new ArticleModel(0, "Space", "Vers l'infini du scrolling, et au delà", "Jehan",
+                new Date(1995,11,12), "Science", TypeMedia.IMAGE,
                 "https://airbusdefenceandspace.com/wp-content/uploads/2016/09/earth-view-from-satellite-space-systems-cover.jpg"));
 
 

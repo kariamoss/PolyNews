@@ -47,9 +47,24 @@ public class NewsCustomAdapter extends ArrayAdapter<ArticleModel> {
 
             ImageView imageView = (ImageView) convertView.findViewById(R.id.thumbnail);
             ProgressBar progressBar = (ProgressBar) convertView.findViewById(R.id.pb_loading_indicator);
-            new AsyncTaskLoadImage(imageView, progressBar).execute(articleModel.getUrlMedia());
+
+            if(articleModel.getTypeMedia() == TypeMedia.VIDEO){
+                ImageView imageView2 = (ImageView) convertView.findViewById(R.id.logoVideo);
+                new AsyncTaskLoadImage(imageView, progressBar).execute(articleModel.getUrlImageForVideo());
+                imageView2.setVisibility(View.VISIBLE);
+            }
+            else {
+                new AsyncTaskLoadImage(imageView, progressBar).execute(articleModel.getUrlMedia());
+            }
         }
 
         return convertView;
     }
 }
+
+
+
+
+
+
+

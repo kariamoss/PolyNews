@@ -16,7 +16,7 @@ import java.net.URL;
  * Created by Jehan on 29/03/2017.
  */
 
-public class AsyncTaskLoadImage extends AsyncTask<String, Void, Bitmap> {
+class AsyncTaskLoadImage extends AsyncTask<String, Void, Bitmap> {
     private ImageView ivNews;
     private ProgressBar pbNews;
 

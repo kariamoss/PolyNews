@@ -15,10 +15,10 @@ public class ArticleModel {
     private String author;
     private Date date;
     private String category;
-    private String typeMedia;
+    private TypeMedia typeMedia;
     private String urlMedia;
 
-    public ArticleModel(int id, String title, String content, String author, Date date, String category, String typeMedia, String urlMedia) {
+    public ArticleModel(int id, String title, String content, String author, Date date, String category, TypeMedia typeMedia, String urlMedia) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -53,12 +53,27 @@ public class ArticleModel {
         return category;
     }
 
-    public String getTypeMedia() {
+    public TypeMedia getTypeMedia() {
         return typeMedia;
     }
 
     public String getUrlMedia() {
         return urlMedia;
+    }
+
+    public String getUrlImageForVideo(){
+        if(typeMedia == TypeMedia.VIDEO){
+            String op = getIdVideo();
+            return "http://img.youtube.com/vi/" + getIdVideo() + "/default.jpg";
+        }
+        return null;
+    }
+
+    public String getIdVideo(){
+        if(typeMedia == TypeMedia.VIDEO){
+            return  urlMedia.substring(urlMedia.indexOf('=')+1);
+        }
+        return null;
     }
 
     @Override
