@@ -14,18 +14,18 @@ public class ArticleModel {
     private String content;
     private String author;
     private Date date;
-    private String category;
+    private Category category;
     private TypeMedia typeMedia;
     private String urlMedia;
 
-    public ArticleModel(int id, String title, String content, String author, Date date, String category, TypeMedia typeMedia, String urlMedia) {
+    public ArticleModel(int id, String title, String content, String author, String date, int category, int typeMedia, String urlMedia) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.author = author;
-        this.date = date;
-        this.category = category;
-        this.typeMedia = typeMedia;
+        this.date = new Date(date);
+        this.category = Category.getCategoryFromId(category);
+        this.typeMedia = TypeMedia.getTypeMediaFromId(typeMedia);
         this.urlMedia = urlMedia;
     }
 
@@ -50,7 +50,7 @@ public class ArticleModel {
     }
 
     public String getCategory() {
-        return category;
+        return category.getName();
     }
 
     public TypeMedia getTypeMedia() {
@@ -63,7 +63,6 @@ public class ArticleModel {
 
     public String getUrlImageForVideo(){
         if(typeMedia == TypeMedia.VIDEO){
-            String op = getIdVideo();
             return "http://img.youtube.com/vi/" + getIdVideo() + "/default.jpg";
         }
         return null;

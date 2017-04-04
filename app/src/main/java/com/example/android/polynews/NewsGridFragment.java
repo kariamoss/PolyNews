@@ -1,12 +1,15 @@
 package com.example.android.polynews;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,27 +26,7 @@ public class NewsGridFragment extends Fragment {
     private static final String ARG_GRID_NUMBER = "grid_number";
     private List<ArticleModel> articleModels;
 
-    public NewsGridFragment() {
-        articleModels = new ArrayList<>();
-        articleModels.add(new ArticleModel(0, "Cours d'info", "Ceci est un contenu\n" +
-                "La longueur devrait être assez grande pour tester maintenant :)", "Jehan",
-                new Date(1995,11,12), "Informatique", TypeMedia.IMAGE,
-                "http://static.eyrolles.com/img/2/7/5/4/0/3/1/7/9782754031790_h430.jpg"));
-        articleModels.add(new ArticleModel(0, "Tout là haut", "Pas beaucoup de contenu ici :x", "Jehan",
-                new Date(1995,11,12,15,10), "Film", TypeMedia.IMAGE,
-                "http://www.menucool.com/slider/jsImgSlider/images/image-slider-2.jpg"));
-        articleModels.add(new ArticleModel(0, "Ｏ(≧▽≦)Ｏ", "Ces chats sont trop mignons. Le 5ème est tout fou !", "Jehan",
-                new Date(1995,11,12), "Chat", TypeMedia.IMAGE,
-                "https://beebom.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg"));
-        articleModels.add(new ArticleModel(1, "Troll", "Mon dieu mais c'est une vidéo ! Que faire ?", "Jehan",
-                new Date(1995,11,12), "Distraction", TypeMedia.VIDEO,
-                "https://www.youtube.com/watch?v=dQw4w9WgXcQ"));
-        articleModels.add(new ArticleModel(0, "Space", "Vers l'infini du scrolling, et au delà", "Jehan",
-                new Date(1995,11,12), "Science", TypeMedia.IMAGE,
-                "https://airbusdefenceandspace.com/wp-content/uploads/2016/09/earth-view-from-satellite-space-systems-cover.jpg"));
-
-
-    }
+    public NewsGridFragment() {}
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -55,6 +38,19 @@ public class NewsGridFragment extends Fragment {
         args.putInt(ARG_GRID_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        NewsDBHelper newsDBHelper = new NewsDBHelper(getActivity());
+        try {
+            newsDBHelper.createDataBase();
+            newsDBHelper.openDataBase();
+        } catch (IOException | SQLException e) {
+            e.printStackTrace();
+        }
+        articleModels = newsDBHelper.getAllArticles();
     }
 
     @Override
