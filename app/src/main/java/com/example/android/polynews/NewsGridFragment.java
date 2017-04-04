@@ -1,5 +1,6 @@
 package com.example.android.polynews;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -26,7 +27,9 @@ public class NewsGridFragment extends Fragment {
     private static final String ARG_GRID_NUMBER = "grid_number";
     private List<ArticleModel> articleModels;
 
-    public NewsGridFragment() {}
+    public NewsGridFragment() {
+        articleModels = new ArrayList<>();
+    }
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -43,14 +46,22 @@ public class NewsGridFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        NewsDBHelper newsDBHelper = new NewsDBHelper(getActivity());
-        try {
-            newsDBHelper.createDataBase();
-            newsDBHelper.openDataBase();
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
+
+        DataHandler mDbHelper = new DataHandler(this.getContext());
+        mDbHelper.createDatabase();
+        mDbHelper.open();
+
+        Cursor cursor = mDbHelper.getTestData();
+        while(!cursor.isAfterLast()){
+            ArticleModel articleModel = new ArticleModel(cursor.getInt(7),
+                    cursor.getString(0), cursor.getString(1), cursor.getString(2),
+                    cursor.getString(3), cursor.getInt(4),  cursor.getInt(5),
+                    cursor.getString(6));
+            articleModels.add(articleModel);
+            cursor.moveToNext();
         }
-        articleModels = newsDBHelper.getAllArticles();
+        cursor.close();
+        mDbHelper.close();
     }
 
     @Override

@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -39,9 +41,14 @@ public class NewsCustomAdapter extends ArrayAdapter<ArticleModel> {
             TextView category = (TextView) convertView.findViewById(R.id.category);
             category.setText(articleModel.getCategory());
             TextView date = (TextView) convertView.findViewById(R.id.date);
-            date.setText(articleModel.getDate().getDay() + "/" + articleModel.getDate().getMonth()
-                    + " " + articleModel.getDate().getHours()
-                    + ":"+ articleModel.getDate().getMinutes());
+            SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM HH:mm");
+            String time = "";
+            try {
+                time = myFormat.format(articleModel.getDateFormat().parse(articleModel.getDate()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            date.setText(time);
             TextView content = (TextView) convertView.findViewById(R.id.content);
             content.setText(articleModel.getContent());
 

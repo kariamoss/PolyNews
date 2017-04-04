@@ -2,6 +2,8 @@ package com.example.android.polynews;
 
 import android.provider.MediaStore;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -13,7 +15,8 @@ public class ArticleModel {
     private String title;
     private String content;
     private String author;
-    private Date date;
+    private SimpleDateFormat dateFormat;
+    private String date;
     private Category category;
     private TypeMedia typeMedia;
     private String urlMedia;
@@ -23,7 +26,8 @@ public class ArticleModel {
         this.title = title;
         this.content = content;
         this.author = author;
-        this.date = new Date(date);
+        this.date = date;
+        this.dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         this.category = Category.getCategoryFromId(category);
         this.typeMedia = TypeMedia.getTypeMediaFromId(typeMedia);
         this.urlMedia = urlMedia;
@@ -45,8 +49,12 @@ public class ArticleModel {
         return author;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
+    }
+
+    public SimpleDateFormat getDateFormat() {
+        return dateFormat;
     }
 
     public String getCategory() {
