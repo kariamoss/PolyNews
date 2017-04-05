@@ -9,27 +9,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
-import com.example.android.polynews.models.ArticleModel;
-import com.example.android.polynews.data.DataHandler;
-import com.example.android.polynews.adapters.NewsCustomAdapter;
 import com.example.android.polynews.R;
+import com.example.android.polynews.adapters.NewsCustomAdapter;
+import com.example.android.polynews.data.DataHandler;
+import com.example.android.polynews.models.ArticleModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Jehan on 22/03/2017.
+ * Created by Jehan on 05/04/2017.
  */
 
-public class NewsGridFragment extends Fragment {
+public class RecyclerViewFragment extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
      */
-    private static final String ARG_GRID_NUMBER = "grid_number";
+    private static final String ARG_LIST_NUMBER = "list_number";
     private List<ArticleModel> articleModels;
 
-    public NewsGridFragment() {
+    public RecyclerViewFragment() {
         articleModels = new ArrayList<>();
     }
 
@@ -40,7 +40,7 @@ public class NewsGridFragment extends Fragment {
     public static NewsGridFragment newInstanceGrid(int sectionNumber) {
         NewsGridFragment fragment = new NewsGridFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_GRID_NUMBER, sectionNumber);
+        args.putInt(ARG_LIST_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
