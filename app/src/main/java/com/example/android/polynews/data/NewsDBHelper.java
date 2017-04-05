@@ -1,4 +1,4 @@
-package com.example.android.polynews;
+package com.example.android.polynews.data;
 
 import java.io.File;
 import java.io.FileOutputStream;

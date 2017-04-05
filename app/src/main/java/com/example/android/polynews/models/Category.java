@@ -1,6 +1,4 @@
-package com.example.android.polynews;
-
-import java.util.Date;
+package com.example.android.polynews.models;
 
 /**
  * Created by Jehan on 04/04/2017.

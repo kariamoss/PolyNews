@@ -1,10 +1,6 @@
-package com.example.android.polynews;
+package com.example.android.polynews.models;
 
-import android.provider.MediaStore;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by Jehan on 22/03/2017.

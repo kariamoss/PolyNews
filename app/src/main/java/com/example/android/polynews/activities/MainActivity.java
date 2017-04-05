@@ -1,4 +1,4 @@
-package com.example.android.polynews;
+package com.example.android.polynews.activities;
 
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -13,8 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.android.polynews.R;
-import com.example.android.polynews.NewsGridFragment;
-import com.example.android.polynews.PlaceholderFragment;
+import com.example.android.polynews.fragments.NewsGridFragment;
+import com.example.android.polynews.fragments.PlaceholderFragment;
 
 public class MainActivity extends AppCompatActivity {
 

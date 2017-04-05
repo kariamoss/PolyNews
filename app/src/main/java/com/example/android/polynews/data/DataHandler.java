@@ -1,4 +1,4 @@
-package com.example.android.polynews;
+package com.example.android.polynews.data;
 import java.io.IOException;
 import android.content.Context;
 import android.database.Cursor;

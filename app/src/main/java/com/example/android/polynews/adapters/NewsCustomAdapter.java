@@ -1,6 +1,9 @@
-package com.example.android.polynews;
+package com.example.android.polynews.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,6 +14,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.android.polynews.R;
+import com.example.android.polynews.models.ArticleModel;
+import com.example.android.polynews.models.TypeMedia;
+
+import java.io.IOException;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -71,6 +80,41 @@ public class NewsCustomAdapter extends ArrayAdapter<ArticleModel> {
 }
 
 
+class AsyncTaskLoadImage extends AsyncTask<String, Void, Bitmap> {
+    private ImageView ivNews;
+    private ProgressBar pbNews;
+
+    AsyncTaskLoadImage(ImageView imageView, ProgressBar progressBar){
+        ivNews = imageView;
+        pbNews = progressBar;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        pbNews.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    protected Bitmap doInBackground(String... params) {
+        Bitmap image = null;
+        try {
+            URL url = new URL(params[0]);
+            image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
+
+    @Override
+    protected void onPostExecute(Bitmap bitmap) {
+        pbNews.setVisibility(View.INVISIBLE);
+        if(bitmap != null){
+            ivNews.setImageBitmap(bitmap);
+        }
+    }
+}
 
 
 

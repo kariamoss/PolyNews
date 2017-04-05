@@ -1,4 +1,4 @@
-package com.example.android.polynews;
+package com.example.android.polynews.fragments;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
-import java.io.IOException;
-import java.sql.SQLException;
+import com.example.android.polynews.models.ArticleModel;
+import com.example.android.polynews.data.DataHandler;
+import com.example.android.polynews.adapters.NewsCustomAdapter;
+import com.example.android.polynews.R;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
