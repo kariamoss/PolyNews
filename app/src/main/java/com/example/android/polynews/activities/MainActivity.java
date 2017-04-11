@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import com.example.android.polynews.R;
 import com.example.android.polynews.fragments.NewsGridFragment;
 import com.example.android.polynews.fragments.PlaceholderFragment;
+import com.example.android.polynews.fragments.RecyclerViewFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -92,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
             // Return a PlaceholderFragment (defined as a static inner class below).
             if(position == 0){
                 return NewsGridFragment.newInstanceGrid(position+1);
+            }
+            else if(position == 1){
+                return RecyclerViewFragment.newInstanceGrid(position+1);
             }
             return PlaceholderFragment.newInstance(position + 1);
         }

@@ -4,13 +4,14 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.example.android.polynews.R;
-import com.example.android.polynews.adapters.NewsCustomAdapter;
+import com.example.android.polynews.adapters.NewsRecyclerViewAdapter;
 import com.example.android.polynews.data.DataHandler;
 import com.example.android.polynews.models.ArticleModel;
 
@@ -37,8 +38,8 @@ public class RecyclerViewFragment extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static NewsGridFragment newInstanceGrid(int sectionNumber) {
-        NewsGridFragment fragment = new NewsGridFragment();
+    public static RecyclerViewFragment newInstanceGrid(int sectionNumber) {
+        RecyclerViewFragment fragment = new RecyclerViewFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_LIST_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -69,14 +70,14 @@ public class RecyclerViewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_newsgrid, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_recycler, container, false);
         return rootView;
     }
 
     @Override
     public void onActivityCreated(Bundle bundle){
         super.onActivityCreated(bundle);
-        GridView gridView = (GridView) getView().findViewById(R.id.section_grid_label);
-        gridView.setAdapter(new NewsCustomAdapter(this.getActivity(), articleModels));
+        RecyclerView recyclerView = (RecyclerView) getView().findViewById(R.id.section_recycler_label);
+        recyclerView.setAdapter(new NewsRecyclerViewAdapter(articleModels));
     }
 }
