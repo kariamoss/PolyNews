@@ -4,6 +4,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,9 +31,11 @@ public class RecyclerViewFragment extends Fragment {
      */
     private static final String ARG_LIST_NUMBER = "list_number";
     private List<ArticleModel> articleModels;
+    private LinearLayoutManager layoutManager;
 
     public RecyclerViewFragment() {
         articleModels = new ArrayList<>();
+        layoutManager = new LinearLayoutManager(this.getContext());
     }
 
     /**
@@ -78,6 +82,7 @@ public class RecyclerViewFragment extends Fragment {
     public void onActivityCreated(Bundle bundle){
         super.onActivityCreated(bundle);
         RecyclerView recyclerView = (RecyclerView) getView().findViewById(R.id.section_recycler_label);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(new NewsRecyclerViewAdapter(articleModels));
     }
 }

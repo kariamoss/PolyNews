@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return "Grid Fragment";
                 case 1:
-                    return "Placeholder Fragment 1";
+                    return "Recycler Fragment";
                 case 2:
                     return "Placeholder Fragment 2";
             }
