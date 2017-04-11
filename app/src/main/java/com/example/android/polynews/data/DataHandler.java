@@ -6,6 +6,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.android.polynews.models.ArticleModel;
+
 
 public class DataHandler
 {
@@ -74,5 +76,12 @@ public class DataHandler
             Log.e(TAG, "getTestData >>"+ mSQLException.toString());
             throw mSQLException;
         }
+    }
+
+    public static ArticleModel getArticleFromCursor(Cursor cursor){
+        return new ArticleModel(cursor.getInt(7),
+                cursor.getString(0), cursor.getString(1), cursor.getString(2),
+                cursor.getString(3), cursor.getInt(4), cursor.getInt(5),
+                cursor.getString(6));
     }
 }

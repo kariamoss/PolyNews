@@ -17,6 +17,8 @@ import com.example.android.polynews.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.android.polynews.data.DataHandler.getArticleFromCursor;
+
 /**
  * Created by Jehan on 22/03/2017.
  */
@@ -55,11 +57,7 @@ public class NewsGridFragment extends Fragment {
 
         Cursor cursor = mDbHelper.getTestData();
         while(!cursor.isAfterLast()){
-            ArticleModel articleModel = new ArticleModel(cursor.getInt(7),
-                    cursor.getString(0), cursor.getString(1), cursor.getString(2),
-                    cursor.getString(3), cursor.getInt(4),  cursor.getInt(5),
-                    cursor.getString(6));
-            articleModels.add(articleModel);
+            articleModels.add(getArticleFromCursor(cursor));
             cursor.moveToNext();
         }
         cursor.close();
