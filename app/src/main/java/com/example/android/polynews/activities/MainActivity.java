@@ -92,10 +92,10 @@ public class MainActivity extends AppCompatActivity {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             if(position == 0){
-                return NewsGridFragment.newInstanceGrid(position+1);
+                return NewsGridFragment.newInstanceGrid();
             }
             else if(position == 1){
-                return RecyclerViewFragment.newInstanceGrid(position+1);
+                return RecyclerViewFragment.newInstanceGrid();
             }
             return PlaceholderFragment.newInstance(position + 1);
         }

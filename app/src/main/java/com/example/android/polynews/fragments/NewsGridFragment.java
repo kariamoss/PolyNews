@@ -28,7 +28,6 @@ public class NewsGridFragment extends Fragment {
      * The fragment argument representing the section number for this
      * fragment.
      */
-    private static final String ARG_GRID_NUMBER = "grid_number";
     private List<ArticleModel> articleModels;
 
     public NewsGridFragment() {
@@ -39,12 +38,9 @@ public class NewsGridFragment extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static NewsGridFragment newInstanceGrid(int sectionNumber) {
-        NewsGridFragment fragment = new NewsGridFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_GRID_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
+    public static NewsGridFragment newInstanceGrid() {
+        return new NewsGridFragment();
+
     }
 
     @Override
